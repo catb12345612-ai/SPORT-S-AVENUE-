@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPORT'S AVENUE - Complete Sports Hub</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Energetic & Athletic Vibe -->
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* COLOR PALETTE - ATHLETIC NEON & DARK */
+        :root {
+            --bg-dark: #0a0e17;
+            --primary: #ff4500; /* Energetic Orange */
+            --secondary: #00ffcc; /* Neon Cyan */
+            --glass-bg: rgba(10, 14, 23, 0.85);
+            --white: #ffffff;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--white);
+            background-color: var(--bg-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* DYNAMIC BACKGROUND (10 IMAGES) */
+        #bg-slider {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -2;
+            background-size: cover;
+            background-position: center;
+            transition: background-image 1.5s ease-in-out;
+            filter: brightness(0.25) contrast(1.2);
+        }
+
+        /* LAYOUT CONTAINER */
+        .container {
+            max-width: 550px;
+            margin: 0 auto;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            min-height: 100vh;
+            padding: 30px 25px;
+            border-left: 2px solid rgba(255, 69, 0, 0.3);
+            border-right: 2px solid rgba(0, 255, 204, 0.3);
+            box-shadow: 0 0 40px rgba(0,0,0,0.9);
+        }
+
+        /* HEADER & LOGO */
+        .header-section { text-align: center; padding-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.2); animation: fadeInDown 0.8s ease; }
+        
+        .store-logo-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 12px;
+            border: 3px solid var(--primary);
+            box-shadow: 0 0 25px rgba(255, 69, 0, 0.6);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .store-logo-img:hover { transform: scale(1.08) rotate(3deg); box-shadow: 0 0 35px var(--secondary); border-color: var(--secondary); }
+
+        .store-name { 
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5rem; 
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(255, 69, 0, 0.3);
+        }
+        .store-owner { font-size: 1rem; color: #ccc; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: -5px; }
+
+        /* FOREGROUND EQUIPMENT SHOWCASE */
+        .equipment-showcase { margin: 30px 0; text-align: center; }
+        .showcase-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--secondary); margin-bottom: 8px; letter-spacing: 1px; }
+        .showcase-subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
+        
+        .equipment-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+        .equip-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            height: 90px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            cursor: pointer;
+        }
+        .equip-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.4s ease;
+            filter: brightness(0.65);
+        }
+        .equip-item:hover img { transform: scale(1.15); filter: brightness(1.1); }
+        .equip-item:hover { border-color: var(--primary); box-shadow: 0 0 15px rgba(255, 69, 0, 0.5); }
+        .equip-label {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(0,0,0,0.75);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 0;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        .equip-item:hover .equip-label { color: var(--secondary); background: rgba(0,0,0,0.9); }
+
+        /* ACTION BUTTONS */
+        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 35px 0; }
+        
+        .action-btn {
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-call:hover { background: #007BFF; border-color: #007BFF; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,123,255,0.4); }
+        .btn-wa:hover { background: #25D366; border-color: #25D366; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
+        .btn-ig:hover { background: #E1306C; border-color: #E1306C; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(225,48,108,0.4); }
+        .btn-map:hover { background: #EA4335; border-color: #EA4335; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(234,67,53,0.4); }
+
+        .action-btn i { font-size: 1.8rem; margin-bottom: 8px; color: var(--primary); transition: 0.3s; }
+        .action-btn:hover i { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
+        .action-btn span { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* MODAL FOR HIDDEN NUMBERS */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 100; opacity: 0; visibility: hidden; transition: 0.3s ease;
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        .modal-content {
+            background: #0a0e17; border: 2px solid var(--secondary);
+            padding: 30px; border-radius: 15px; width: 90%; max-width: 350px;
+            text-align: center; box-shadow: 0 15px 40px rgba(0,255,204,0.3);
+            transform: scale(0.9); transition: 0.3s ease;
+        }
+        .modal-overlay.active .modal-content { transform: scale(1); }
+        
+        .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--primary); margin-bottom: 20px; letter-spacing: 1px;}
+        
+        .modal-btn {
+            display: block; width: 100%; padding: 14px; margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05); color: #fff;
+            border: 1px solid var(--secondary);
+            text-decoration: none; font-size: 1.05rem; font-weight: 700; border-radius: 8px;
+            transition: 0.3s; cursor: pointer; text-transform: uppercase;
+        }
+        .modal-btn:hover { background: var(--secondary); color: #000; box-shadow: 0 0 20px var(--secondary); transform: scale(1.02); }
+        .close-modal { color: #888; cursor: pointer; font-size: 0.85rem; margin-top: 15px; display: inline-block; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;}
+        .close-modal:hover { color: var(--primary); }
+
+        /* AUTO REVIEW SECTION */
+        .review-section { 
+            text-align: center; background: rgba(0,0,0,0.6); padding: 35px 20px; 
+            border-radius: 15px; margin: 35px 0; border: 1px solid rgba(255, 69, 0, 0.3); 
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+        }
+        
+        .review-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; margin-bottom: 5px; color: #fff; letter-spacing: 1px;}
+        
+        .review-btn { 
+            background: linear-gradient(45deg, var(--primary), #ff7300);
+            color: #fff; font-size: 1.1rem; font-weight: 700; font-family: 'Poppins', sans-serif;
+            padding: 16px 20px; border: none; border-radius: 30px; cursor: pointer; 
+            text-transform: uppercase; transition: all 0.3s ease; width: 100%; margin-top: 18px;
+            box-shadow: 0 8px 20px rgba(255, 69, 0, 0.5);
+            animation: pulseGlow 2.5s infinite;
+        }
+        .review-btn:hover { background: var(--secondary); color: #000; box-shadow: 0 10px 30px rgba(0, 255, 204, 0.7); animation: none; transform: scale(1.03); }
+        .review-note { font-size: 0.8rem; color: #aaa; margin-top: 15px; font-weight: 600; letter-spacing: 0.5px;}
+
+        /* FOOTER / DEVELOPER INFO */
+        .footer { text-align: center; padding: 30px 0 15px; margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .dev-badge { 
+            display: inline-flex; flex-direction: column; align-items: center;
+            background: rgba(0,0,0,0.5); padding: 15px 25px; border-radius: 15px; 
+            border: 1px solid rgba(255,255,255,0.05); text-decoration: none; transition: 0.3s; 
+        }
+        .dev-badge:hover { border-color: var(--secondary); background: rgba(0, 255, 204, 0.05); transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
+        .dev-logo-img { 
+            width: 55px; height: 55px; border-radius: 50%; margin-bottom: 10px; 
+            border: 2px solid var(--secondary); object-fit: cover; transition: 0.4s ease; 
+        }
+        .dev-badge:hover .dev-logo-img { transform: rotate(15deg) scale(1.15); box-shadow: 0 0 15px var(--secondary); }
+        .dev-text { color: #aaa; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px;}
+        .dev-name { color: var(--white); font-weight: 700; font-size: 0.95rem; }
+        
+        .copyright-text { font-size: 0.75rem; color: #555; margin-top: 20px; font-weight: 600; letter-spacing: 0.5px; }
+
+        /* VFX: GLOW EFFECTS */
+        .glow-text { transition: text-shadow 0.3s ease, color 0.3s ease; }
+        .glow-text:active, .glow-text:hover { text-shadow: 0 0 12px var(--primary), 0 0 25px var(--secondary); color: var(--white); }
+
+        /* ANIMATIONS */
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-25px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 15px rgba(255,69,0,0.4); } 50% { box-shadow: 0 0 25px rgba(255,69,0,0.8); } 100% { box-shadow: 0 0 15px rgba(255,69,0,0.4); } }
+        
+        .fade-in-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .fade-in-scroll.visible { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- DYNAMIC BACKGROUND -->
+    <div id="bg-slider"></div>
+
+    <!-- UI SOUND EFFECTS (SFX) -->
+    <audio id="sfx-click" src="https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3"></audio>
+    <audio id="sfx-success" src="https://assets.mixkit.co/active_storage/sfx/1435/1435-preview.mp3"></audio>
+
+    <div class="container">
+        
+        <!-- HEADER -->
+        <header class="header-section">
+            <img src="sports.avenue.jpeg" alt="Sport's Avenue Logo" class="store-logo-img click-sfx" onerror="this.src='https://via.placeholder.com/150/0a0e17/ff4500?text=SPORTS+AVENUE'">
+            <h1 class="store-name glow-text">SPORT'S AVENUE</h1>
+            <div class="store-owner glow-text">Prop: Mohammed Abdul Naseem</div>
+        </header>
+
+        <!-- EQUIPMENT FOREGROUND SHOWCASE (6 ITEMS) -->
+        <div class="equipment-showcase fade-in-scroll">
+            <h2 class="showcase-title glow-text">Your One-Stop Sports Hub</h2>
+            <div class="showcase-subtitle glow-text">All Kits & Availability Under One Roof</div>
+            
+            <div class="equipment-grid">
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=50&w=300" alt="Cricket Bats & Kits">
+                    <div class="equip-label">Cricket Kits</div>
+                </div>
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=50&w=300" alt="Basketball">
+                    <div class="equip-label">Basketballs</div>
+                </div>
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=50&w=300" alt="Volleyball">
+                    <div class="equip-label">Volleyballs</div>
+                </div>
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1622279457486-69d73ce184fc?auto=format&fit=crop&q=50&w=300" alt="Badminton Rackets">
+                    <div class="equip-label">Badminton</div>
+                </div>
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&q=50&w=300" alt="Football Boots & Balls">
+                    <div class="equip-label">Football Gear</div>
+                </div>
+                <div class="equip-item click-sfx">
+                    <img src="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&q=50&w=300" alt="Tennis">
+                    <div class="equip-label">Tennis Gear</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACTION BUTTONS -->
+        <div class="action-grid fade-in-scroll">
+            <div class="action-btn btn-call click-sfx" onclick="openModal('call')">
+                <i class="fa-solid fa-phone"></i>
+                <span>Call Us</span>
+            </div>
+            
+            <div class="action-btn btn-wa click-sfx" onclick="openModal('wa')">
+                <i class="fa-brands fa-whatsapp"></i>
+                <span>WhatsApp</span>
+            </div>
+
+            <a href="https://www.instagram.com/sportsavenuekhammam/" class="action-btn btn-ig click-sfx" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+                <span>Instagram</span>
+            </a>
+
+            <a href="https://www.google.com/maps?cid=8203686863246455726" class="action-btn btn-map click-sfx" target="_blank">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>Store Location</span>
+            </a>
+        </div>
+
+        <!-- AUTO-GENERATED REVIEW SECTION -->
+        <div class="review-section fade-in-scroll">
+            <h3 class="review-title glow-text">Support Us <i class="fa-solid fa-star" style="color: #ffc107; text-shadow: 0 0 10px gold;"></i></h3>
+            <p style="font-size: 0.95rem; color: #ddd; margin-bottom: 5px;" class="glow-text">Tap below to auto-generate & copy a 5-Star Review.</p>
+            
+            <!-- SINGLE TAP COPY & REDIRECT BUTTON -->
+            <button class="review-btn click-sfx" id="reviewBtnMain" onclick="generateAndRedirect()">
+                <i class="fa-brands fa-google"></i> Post a 5-Star Review
+            </button>
+            
+            <div class="review-note glow-text"><i class="fa-solid fa-bolt" style="color:var(--secondary)"></i> Single tap copies text & opens Google Maps. Just Paste!</div>
+        </div>
+
+        <!-- FOOTER / DEVELOPER LOGO -->
+        <footer class="footer fade-in-scroll">
+            <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-REVIEW/" target="_blank" class="dev-badge click-sfx">
+                <img src="dev-logo.png (1)_2.jpg" alt="Developer Logo" class="dev-logo-img" onerror="this.src='https://via.placeholder.com/150/0a0e17/00ffcc?text=DEV'">
+                <span class="dev-text">Engineered By</span>
+                <span class="dev-name glow-text">SYED ZEESHAAN ALI</span>
+            </a>
+            <div class="copyright-text">&copy; 2026 Copyright of syedzeeshaanali07. All Rights Reserved.</div>
+        </footer>
+
+    </div>
+
+    <!-- MODAL FOR HIDDEN NUMBERS -->
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <h3 class="modal-title glow-text" id="modalTitle">Select Action</h3>
+            <div id="modalButtons">
+                <!-- Injected via JS -->
+            </div>
+            <span class="close-modal click-sfx" onclick="closeModal()">[ Close window ]</span>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ENGINE -->
+    <script>
+        // 1. DYNAMIC BACKGROUND IMAGE CHANGER (10 SPORTS IMAGES)
+        const bgImages = [
+            'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=50&w=800', // Stadium
+            'https://images.unsplash.com/photo-1518605368461-1b32ce525044?auto=format&fit=crop&q=50&w=800', // Tennis
+            'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=50&w=800', // Football 
+            'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=50&w=800', // Basketball
+            'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=50&w=800', // Volleyball
+            'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=50&w=800', // Cricket
+            'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=50&w=800', // Athletics track
+            'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=50&w=800', // Gym / Weights
+            'https://images.unsplash.com/photo-1562771242-a02d9096c85c?auto=format&fit=crop&q=50&w=800', // Badminton/Net
+            'https://images.unsplash.com/photo-1508344928928-7165b67de128?auto=format&fit=crop&q=50&w=800'  // General Sports vibe
+        ];
+        
+        let bgIndex = 0;
+        const bgSlider = document.getElementById('bg-slider');
+        
+        function changeBackground() {
+            bgSlider.style.backgroundImage = `url('${bgImages[bgIndex]}')`;
+            bgIndex = (bgIndex + 1) % bgImages.length;
+        }
+        changeBackground(); 
+        setInterval(changeBackground, 10000); // Change every 10 seconds
+
+        // 2. SCROLL ANIMATION OBSERVER
+        const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -20px 0px" };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, observerOptions);
+        document.querySelectorAll('.fade-in-scroll').forEach(el => observer.observe(el));
+
+        // 3. SOUND EFFECTS (SFX) HANDLER
+        const clickAudio = document.getElementById('sfx-click');
+        const successAudio = document.getElementById('sfx-success');
+        
+        document.querySelectorAll('.click-sfx').forEach(btn => {
+            btn.addEventListener('click', () => {
+                clickAudio.currentTime = 0;
+                clickAudio.play().catch(e => console.log('Audio autoplay blocked by browser'));
+            });
+        });
+
+        // 4. MODAL LOGIC FOR HIDDEN NUMBER
+        const shopNumber = "8686853999";
+        const modal = document.getElementById('contactModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalButtons = document.getElementById('modalButtons');
+
+        function openModal(type) {
+            modalButtons.innerHTML = ''; 
+            
+            if(type === 'call') {
+                modalTitle.innerHTML = '<i class="fa-solid fa-phone"></i> Call Store';
+                modalButtons.innerHTML = `
+                    <button onclick="window.location.href='tel:+91${shopNumber}'" class="modal-btn click-sfx">Call Mohammed Abdul Naseem</button>
+                `;
+            } else if (type === 'wa') {
+                modalTitle.innerHTML = '<i class="fa-brands fa-whatsapp"></i> WhatsApp Options';
+                modalButtons.innerHTML = `
+                    <button onclick="window.open('https://wa.me/91${shopNumber}', '_blank')" class="modal-btn click-sfx">Chat on WhatsApp</button>
+                `;
+            }
+            
+            document.querySelectorAll('.modal-btn').forEach(btn => {
+                btn.addEventListener('click', () => { clickAudio.currentTime = 0; clickAudio.play().catch(e=>{}); });
+            });
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // 5. AI REVIEW GENERATOR & SINGLE-CLICK AUTO-REDIRECT (30+ Variations)
+        const reviews = [
+            "Sport's Avenue is the best sports shop in Khammam! Mohammed Abdul Naseem is extremely helpful.",
+            "Got my complete cricket kit from here. Unbeatable quality and pricing.",
+            "One stop shop for all sporting needs. They have everything from badminton rackets to footballs.",
+            "Very impressed with the variety of sports equipment available at Sport's Avenue.",
+            "Mohammed Abdul Naseem guided me to buy the perfect basketball shoes. Highly recommended!",
+            "Best place in Khammam to buy genuine sports gear. 5 stars all the way.",
+            "Excellent customer service and top-notch equipment quality.",
+            "Bought a volleyball net and balls. The durability is amazing. Thank you Sport's Avenue!",
+            "The owner, Mohammed Abdul Naseem, has profound knowledge about sports equipment.",
+            "Wide range of branded sports items available at great discounts.",
+            "I regularly buy my gym and fitness gear from here. Never disappointed.",
+            "If you love sports, this avenue in Khammam is a paradise for you.",
+            "Authentic products and great hospitality. Best sports store in the city.",
+            "Found exactly the tennis racket I was looking for. Huge collection!",
+            "Sport's Avenue provides the best quality kits for school and college tournaments.",
+            "Very reasonable prices compared to online stores. Plus, you get to check the quality physically.",
+            "Great store ambiance and perfectly organized sporting goods.",
+            "Mohammed Abdul Naseem is a very polite and knowledgeable owner.",
+            "Bought swimming gear last week. Perfect fit and excellent material.",
+            "They strictly maintain high-quality stock. Highly recommended to all athletes.",
+            "Five stars for the incredible service and wide range of sports accessories available.",
+            "My go-to place for all indoor and outdoor game equipment.",
+            "The best sports showroom in Telangana! Huge variety and great deals.",
+            "Very clean store. The staff maintains great professionalism.",
+            "They guided me to buy the perfect kit for my budget. Extremely thankful to Sport's Avenue.",
+            "Bought a football from here. Performance is awesome and the buying experience was smooth.",
+            "Highly secure and honest opinions on which sports brand to buy. Love it.",
+            "Sport's Avenue truly stands up to its name as Khammam's premier sports store!",
+            "I bought track pants and t-shirts. 100% original quality. Great shop!",
+            "Unbeatable prices on all sports accessories. Highly satisfied with my purchase."
+        ];
+
+        function generateAndRedirect() {
+            const btn = document.getElementById('reviewBtnMain');
+            
+            // Play success SFX
+            successAudio.currentTime = 0;
+            successAudio.play().catch(e => console.log('Audio blocked by browser'));
+
+            // Select random AI review
+            const randomReview = reviews[Math.floor(Math.random() * reviews.length)];
+            
+            // Write to clipboard and trigger auto-redirect VFX
+            navigator.clipboard.writeText(randomReview).then(() => {
+                
+                // Visual Button Change (Green Success VFX)
+                const originalText = btn.innerHTML;
+                const originalBackground = btn.style.background;
+                const originalAnimation = btn.style.animation;
+                
+                btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> Copied! Redirecting...';
+                btn.style.background = '#00e676'; // Success Green
+                btn.style.color = '#000';
+                btn.style.boxShadow = '0 0 25px #00e676';
+                btn.style.animation = 'none';
+                
+                // Delay redirect slightly so user sees the success state & hears the sound
+                setTimeout(() => {
+                    window.location.href = "https://www.google.com/maps?cid=8203686863246455726";
+                    
+                    // Reset button back to normal after a couple of seconds (in case they navigate back)
+                    setTimeout(() => {
+                        btn.innerHTML = originalText;
+                        btn.style.background = originalBackground;
+                        btn.style.color = '#fff';
+                        btn.style.boxShadow = '';
+                        btn.style.animation = originalAnimation;
+                    }, 2000);
+                }, 1300); // 1.3 seconds delay for seamless UX
+
+            }).catch(err => {
+                console.error('Could not copy text: ', err);
+                // Fallback direct navigation if clipboard permission fails
+                window.location.href = "https://www.google.com/maps?cid=8203686863246455726";
+            });
+        }
+    </script>
+</body>
+</html>
