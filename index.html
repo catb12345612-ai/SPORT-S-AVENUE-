@@ -38,14 +38,14 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; background-size: cover; background-position: center;
             filter: brightness(0.2) contrast(1.2);
-            will-change: background-image;
+            will-change: background-image; /* Forces GPU acceleration */
             transition: background-image 0.8s ease-in-out;
         }
 
         .container {
             max-width: 550px; margin: 0 auto;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
             min-height: 100vh; padding: 35px 25px;
             border-left: 2px solid rgba(255, 51, 0, 0.3);
             border-right: 2px solid rgba(0, 212, 255, 0.3);
@@ -76,7 +76,7 @@
         }
         .store-owner { font-size: 0.95rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
 
-        /* EQUIPMENT SHOWCASE (CORRECTED IMAGES) */
+        /* EQUIPMENT SHOWCASE - PERFECT 2x2 GRID */
         .equipment-showcase { margin: 30px 0; text-align: center; }
         .showcase-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .showcase-subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
@@ -85,13 +85,14 @@
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center; 
-            gap: 10px; 
+            gap: 12px; 
         }
         .equip-item {
             position: relative; border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05); height: 90px;
+            border: 1px solid rgba(255,255,255,0.05); height: 110px; /* Made slightly taller for better visuals */
             box-shadow: 0 5px 15px rgba(0,0,0,0.6); cursor: pointer; transform: translateZ(0);
-            flex: 1 1 calc(33.333% - 10px); min-width: 100px; max-width: calc(33.333% - 10px);
+            /* Perfect 50% split for the 4 remaining items */
+            flex: 1 1 calc(50% - 12px); max-width: calc(50% - 6px);
         }
         .equip-item img {
             width: 100%; height: 100%; object-fit: cover; transition: 0.3s ease; filter: brightness(0.7);
@@ -101,8 +102,8 @@
         
         .equip-label {
             position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.85); color: #fff; font-size: 0.7rem; font-weight: 700;
-            padding: 4px 0; text-transform: uppercase; transition: 0.3s;
+            background: rgba(0,0,0,0.85); color: #fff; font-size: 0.8rem; font-weight: 700;
+            padding: 6px 0; text-transform: uppercase; transition: 0.3s;
         }
         .equip-item:hover .equip-label { color: var(--secondary); background: rgba(0,0,0,0.95); }
 
@@ -205,7 +206,7 @@
             <div class="store-owner glow-text-orange">Prop: Mohammed Abdul Naseem</div>
         </header>
 
-        <!-- HIGH-SPEED GRID (CORRECTED IMAGES) -->
+        <!-- HIGH-SPEED GRID (PERFECT 2x2 LAYOUT) -->
         <div class="equipment-showcase fade-in-scroll">
             <h2 class="showcase-title glow-text">Your One-Stop Sports Hub</h2>
             <div class="showcase-subtitle glow-text-orange">All Kits Available Under One Roof</div>
@@ -213,27 +214,22 @@
             <div class="equipment-grid">
                 <!-- Cricket -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Cricket Kits" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=20&w=300&fm=webp" alt="Cricket Kits" loading="lazy">
                     <div class="equip-label">Cricket Kits</div>
                 </div>
                 <!-- Basketball -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Basketballs" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=20&w=300&fm=webp" alt="Basketballs" loading="lazy">
                     <div class="equip-label">Basketballs</div>
-                </div>
-                <!-- Volleyball -->
-                <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1612872087720-d41d3b9e4a3b?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Volleyballs" loading="lazy">
-                    <div class="equip-label">Volleyballs</div>
                 </div>
                 <!-- Football -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Football Gear" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=20&w=300&fm=webp" alt="Football Gear" loading="lazy">
                     <div class="equip-label">Football Gear</div>
                 </div>
                 <!-- Tennis -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Tennis Gear" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=20&w=300&fm=webp" alt="Tennis Gear" loading="lazy">
                     <div class="equip-label">Tennis Gear</div>
                 </div>
             </div>
@@ -288,13 +284,12 @@
 
     <!-- JAVASCRIPT ENGINE (OPTIMIZED) -->
     <script>
-        // 1. FAST-LOADING BACKGROUND ARRAY (Badminton removed)
+        // 1. FAST-LOADING BACKGROUND ARRAY (Problematic images removed)
         const bgImages = [
             'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=15&w=500&fm=webp', // Stadium
             'https://images.unsplash.com/photo-1518605368461-1b32ce525044?auto=format&fit=crop&q=15&w=500&fm=webp', // Tennis
             'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=15&w=500&fm=webp', // Football
             'https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=15&w=500&fm=webp', // Basketball
-            'https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=15&w=500&fm=webp', // Volleyball
             'https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=15&w=500&fm=webp', // Cricket
             'https://images.unsplash.com/photo-1517649763962-0c623066013b?auto=format&fit=crop&q=15&w=500&fm=webp', // Track
             'https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=15&w=500&fm=webp', // Gym
