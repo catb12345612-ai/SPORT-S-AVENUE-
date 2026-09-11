@@ -38,7 +38,7 @@
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; background-size: cover; background-position: center;
             filter: brightness(0.2) contrast(1.2);
-            will-change: background-image; /* Forces GPU acceleration */
+            will-change: background-image;
             transition: background-image 0.8s ease-in-out;
         }
 
@@ -76,7 +76,7 @@
         }
         .store-owner { font-size: 0.95rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
 
-        /* EQUIPMENT SHOWCASE (HIGHLY COMPRESSED IMAGES) */
+        /* EQUIPMENT SHOWCASE (CORRECTED IMAGES) */
         .equipment-showcase { margin: 30px 0; text-align: center; }
         .showcase-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .showcase-subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
@@ -205,30 +205,35 @@
             <div class="store-owner glow-text-orange">Prop: Mohammed Abdul Naseem</div>
         </header>
 
-        <!-- HIGH-SPEED GRID (REMOVED BADMINTON) -->
+        <!-- HIGH-SPEED GRID (CORRECTED IMAGES) -->
         <div class="equipment-showcase fade-in-scroll">
             <h2 class="showcase-title glow-text">Your One-Stop Sports Hub</h2>
             <div class="showcase-subtitle glow-text-orange">All Kits Available Under One Roof</div>
             
             <div class="equipment-grid">
+                <!-- Cricket -->
                 <div class="equip-item click-sfx">
                     <img src="https://images.unsplash.com/photo-1593341646782-e0b495cff86d?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Cricket Kits" loading="lazy">
                     <div class="equip-label">Cricket Kits</div>
                 </div>
+                <!-- Basketball -->
                 <div class="equip-item click-sfx">
                     <img src="https://images.unsplash.com/photo-1519861531473-9200262188bf?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Basketballs" loading="lazy">
                     <div class="equip-label">Basketballs</div>
                 </div>
+                <!-- Volleyball -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Volleyballs" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1612872087720-d41d3b9e4a3b?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Volleyballs" loading="lazy">
                     <div class="equip-label">Volleyballs</div>
                 </div>
+                <!-- Football -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Football Gear" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Football Gear" loading="lazy">
                     <div class="equip-label">Football Gear</div>
                 </div>
+                <!-- Tennis -->
                 <div class="equip-item click-sfx">
-                    <img src="https://images.unsplash.com/photo-1515523110800-9415d13b84a8?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Tennis Gear" loading="lazy">
+                    <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Tennis Gear" loading="lazy">
                     <div class="equip-label">Tennis Gear</div>
                 </div>
             </div>
@@ -264,7 +269,7 @@
         <!-- DEVELOPER FOOTER (FIXED DEV LOGO) -->
         <footer class="footer fade-in-scroll">
             <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-REVIEW/" target="_blank" class="dev-badge click-sfx">
-                <img src="dev-logo.png (1)_2.png" alt="Developer Logo" class="dev-logo-img" onerror="this.style.display='none'">
+                <img src="dev-logo.png (1).png" alt="Developer Logo" class="dev-logo-img" onerror="this.style.display='none'">
                 <span class="dev-text">Engineered By</span>
                 <span class="dev-name glow-text">SYED ZEESHAAN ALI</span>
             </a>
@@ -382,6 +387,9 @@
             "Unbeatable prices on all sports accessories. Highly satisfied with my purchase."
         ];
 
+        // NEW UPDATED GOOGLE REVIEW REDIRECT LINK
+        const reviewUrl = "https://search.google.com/local/reviews?placeid=ChIJMzOhKX9ZNDoRrvNXtLxZ2XE&q=Sports+Avenue,+Wyra+Road,+Kaviraj+Nagar,+Khammam,+Telangana&authuser=0&hl=en&gl=IN";
+
         function generateAndRedirect() {
             const btn = document.getElementById('reviewBtnMain');
             successAudio.currentTime = 0;
@@ -400,7 +408,7 @@
                 btn.style.animation = 'none';
                 
                 setTimeout(() => {
-                    window.location.href = "https://www.google.com/maps?cid=8203686863246455726";
+                    window.location.href = reviewUrl;
                     setTimeout(() => {
                         btn.innerHTML = originalText;
                         btn.style.background = originalBackground;
@@ -411,7 +419,7 @@
                 }, 1200);
 
             }).catch(err => {
-                window.location.href = "https://www.google.com/maps?cid=8203686863246455726";
+                window.location.href = reviewUrl;
             });
         }
     </script>
