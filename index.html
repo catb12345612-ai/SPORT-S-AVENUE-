@@ -81,11 +81,17 @@
         .showcase-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
         .showcase-subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
         
-        .equipment-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .equipment-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 10px; 
+        }
         .equip-item {
             position: relative; border-radius: 12px; overflow: hidden;
             border: 1px solid rgba(255,255,255,0.05); height: 90px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.6); cursor: pointer; transform: translateZ(0);
+            flex: 1 1 calc(33.333% - 10px); min-width: 100px; max-width: calc(33.333% - 10px);
         }
         .equip-item img {
             width: 100%; height: 100%; object-fit: cover; transition: 0.3s ease; filter: brightness(0.7);
@@ -199,7 +205,7 @@
             <div class="store-owner glow-text-orange">Prop: Mohammed Abdul Naseem</div>
         </header>
 
-        <!-- HIGH-SPEED GRID (FIXED BADMINTON IMAGE + LOW KBs) -->
+        <!-- HIGH-SPEED GRID (REMOVED BADMINTON) -->
         <div class="equipment-showcase fade-in-scroll">
             <h2 class="showcase-title glow-text">Your One-Stop Sports Hub</h2>
             <div class="showcase-subtitle glow-text-orange">All Kits Available Under One Roof</div>
@@ -216,11 +222,6 @@
                 <div class="equip-item click-sfx">
                     <img src="https://images.unsplash.com/photo-1595435934249-5df7ed86e1c0?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Volleyballs" loading="lazy">
                     <div class="equip-label">Volleyballs</div>
-                </div>
-                <div class="equip-item click-sfx">
-                    <!-- FIXED BADMINTON IMAGE URL -->
-                    <img src="https://images.unsplash.com/photo-1562771242-a02d9096c85c?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Badminton" loading="lazy">
-                    <div class="equip-label">Badminton</div>
                 </div>
                 <div class="equip-item click-sfx">
                     <img src="https://images.unsplash.com/photo-1614632537190-23e4146777db?auto=format&fit=crop&q=20&w=200&fm=webp" alt="Football Gear" loading="lazy">
@@ -263,7 +264,7 @@
         <!-- DEVELOPER FOOTER (FIXED DEV LOGO) -->
         <footer class="footer fade-in-scroll">
             <a href="https://catb12345612-ai.github.io/Syed-Zeeshaan-Ali-High-Fledged-Engineering-And-Digital-Tech-Solutions-REVIEW/" target="_blank" class="dev-badge click-sfx">
-                <img src="dev-logo.png (1).png" alt="Developer Logo" class="dev-logo-img" onerror="this.style.display='none'">
+                <img src="dev-logo.png (1)_2.png" alt="Developer Logo" class="dev-logo-img" onerror="this.style.display='none'">
                 <span class="dev-text">Engineered By</span>
                 <span class="dev-name glow-text">SYED ZEESHAAN ALI</span>
             </a>
@@ -282,7 +283,7 @@
 
     <!-- JAVASCRIPT ENGINE (OPTIMIZED) -->
     <script>
-        // 1. FAST-LOADING BACKGROUND ARRAY (10 Images, Max Compressed <15KB each)
+        // 1. FAST-LOADING BACKGROUND ARRAY (Badminton removed)
         const bgImages = [
             'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&q=15&w=500&fm=webp', // Stadium
             'https://images.unsplash.com/photo-1518605368461-1b32ce525044?auto=format&fit=crop&q=15&w=500&fm=webp', // Tennis
