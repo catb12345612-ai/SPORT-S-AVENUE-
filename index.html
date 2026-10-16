@@ -13,17 +13,28 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* HARDWARE ACCELERATED & OPTIMIZED CSS ENGINE */
+        /* =========================================================
+           ULTRA-PREMIUM 3D LIQUID GLASS & ELECTRIC VOLT THEME
+           ========================================================= */
         :root {
-            --bg-dark: #07090f;
-            --primary: #ff3300;
-            --secondary: #00d4ff;
-            --glass-bg: rgba(10, 13, 20, 0.85);
+            --bg-dark: #030508;
+            --primary: #ccff00;          /* Electric Athletic Volt */
+            --secondary: #00f0ff;        /* Cyber Trophy Cyan */
+            --accent: #ff0055;           /* High-Energy Crimson */
+            --glass-bg: rgba(10, 14, 23, 0.55);
+            --glass-card: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --glass-highlight: rgba(255, 255, 255, 0.25);
             --white: #ffffff;
-            --text-light: #cccccc;
+            --text-light: #b8c4d9;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        /* Custom Neon Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, var(--primary), var(--secondary)); border-radius: 10px; }
         
         body {
             font-family: 'Poppins', sans-serif;
@@ -31,161 +42,573 @@
             background-color: var(--bg-dark);
             overflow-x: hidden;
             scroll-behavior: smooth;
+            position: relative;
+        }
+
+        /* AMBIENT AURORA GLOW OVERLAY */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20%; left: -20%; width: 140vw; height: 140vh;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(204, 255, 0, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 85% 80%, rgba(0, 240, 255, 0.14) 0%, transparent 45%),
+                radial-gradient(circle at 50% 50%, rgba(255, 0, 85, 0.07) 0%, transparent 60%);
+            z-index: -1;
+            pointer-events: none;
+            animation: ambientPulse 10s ease-in-out infinite alternate;
         }
 
         /* ZERO-LAG DYNAMIC BACKGROUND */
         #bg-slider {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
             z-index: -2; background-size: cover; background-position: center;
-            filter: brightness(0.2) contrast(1.2);
-            will-change: background-image; /* Forces GPU acceleration */
-            transition: background-image 0.8s ease-in-out;
+            filter: brightness(0.22) contrast(1.25) saturate(1.3);
+            will-change: background-image, transform;
+            transition: background-image 1s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: scale(1.05);
         }
 
+        /* MAIN LIQUID GLASS CAPSULE CONTAINER */
         .container {
-            max-width: 550px; margin: 0 auto;
-            background: var(--glass-bg);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            min-height: 100vh; padding: 35px 25px;
-            border-left: 2px solid rgba(255, 51, 0, 0.3);
-            border-right: 2px solid rgba(0, 212, 255, 0.3);
-            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            max-width: 540px; 
+            margin: 20px auto;
+            background: linear-gradient(145deg, rgba(16, 22, 36, 0.68) 0%, rgba(6, 9, 15, 0.82) 100%);
+            backdrop-filter: blur(28px) saturate(190%);
+            -webkit-backdrop-filter: blur(28px) saturate(190%);
+            min-height: calc(100vh - 40px); 
+            padding: 40px 26px;
+            border-radius: 34px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+            box-shadow: 
+                0 30px 70px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(0, 240, 255, 0.08),
+                inset 0 1px 2px rgba(255, 255, 255, 0.25),
+                inset 0 -10px 30px rgba(0, 0, 0, 0.6);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* STORE LOGO (FIXED) */
-        .header-section { text-align: center; padding-bottom: 25px; border-bottom: 1px dashed rgba(255,255,255,0.1); animation: fadeInDown 0.6s ease; }
+        /* Subtle Carbon Mesh Texture inside Glass */
+        .container::after {
+            content: '';
+            position: absolute; top: 0; left: 0; right: 0; height: 220px;
+            background: radial-gradient(ellipse at top, rgba(204, 255, 0, 0.12), transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .container > * { position: relative; z-index: 1; }
+
+        @media (max-width: 580px) {
+            .container {
+                margin: 0 auto;
+                min-height: 100vh;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+                padding: 35px 20px;
+            }
+        }
+
+        /* STORE LOGO & FLOATING HALO */
+        .header-section { 
+            text-align: center; 
+            padding-bottom: 28px; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08); 
+            animation: fadeInDown 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
         
-        .store-logo-img {
-            width: 140px; height: 140px; border-radius: 50%; object-fit: contain;
-            margin-bottom: 12px; border: 3px solid var(--secondary); background: #07090f;
-            box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-            will-change: transform;
+        .header-section::after {
+            content: '';
+            position: absolute; bottom: -1px; left: 50%; transform: translateX(-50%);
+            width: 140px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), var(--secondary), transparent);
+            box-shadow: 0 0 12px var(--primary);
         }
-        .store-logo-img:hover { transform: scale(1.05) rotate(3deg); box-shadow: 0 0 35px var(--primary); border-color: var(--primary); }
 
-        /* NEON VFX */
-        .glow-text { transition: text-shadow 0.3s ease, color 0.3s ease; }
-        .glow-text:hover { text-shadow: 0 0 10px var(--secondary), 0 0 20px var(--secondary), 0 0 30px #fff; }
-        .glow-text-orange:hover { text-shadow: 0 0 10px var(--primary), 0 0 20px var(--primary), 0 0 30px #fff; }
+        .store-logo-img {
+            width: 142px; height: 142px; border-radius: 50%; object-fit: contain;
+            margin-bottom: 14px; 
+            padding: 5px;
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.2), rgba(0, 240, 255, 0.2));
+            border: 2px solid rgba(204, 255, 0, 0.7);
+            box-shadow: 
+                0 15px 35px rgba(0, 0, 0, 0.8),
+                0 0 28px rgba(204, 255, 0, 0.35),
+                inset 0 0 18px rgba(0, 240, 255, 0.3);
+            transition: all 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            will-change: transform;
+            animation: floatLogo 5s ease-in-out infinite;
+        }
+        .store-logo-img:hover { 
+            transform: scale(1.08) rotate(5deg); 
+            box-shadow: 0 0 45px var(--primary), 0 0 70px var(--secondary); 
+            border-color: #fff; 
+        }
+
+        /* HYPER-CRISP TYPOGRAPHY & NEON VFX */
+        .glow-text { transition: all 0.35s ease; }
+        .glow-text:hover { text-shadow: 0 0 15px rgba(0, 240, 255, 0.8), 0 0 30px rgba(204, 255, 0, 0.5); }
+        .glow-text-orange:hover { text-shadow: 0 0 15px var(--primary), 0 0 25px #fff; }
 
         .store-name { 
-            font-family: 'Bebas Neue', sans-serif; font-size: 3.6rem; letter-spacing: 2px;
-            background: linear-gradient(90deg, var(--secondary), var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; line-height: 1.1;
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 4rem; 
+            letter-spacing: 3.5px;
+            background: linear-gradient(135deg, #ffffff 15%, var(--primary) 55%, var(--secondary) 95%);
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            line-height: 1.05;
+            filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.7));
         }
-        .store-owner { font-size: 0.95rem; color: var(--text-light); font-weight: 600; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
 
-        /* EQUIPMENT SHOWCASE - PERFECT 2x2 GRID */
-        .equipment-showcase { margin: 30px 0; text-align: center; }
-        .showcase-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.2rem; color: var(--secondary); margin-bottom: 5px; }
-        .showcase-subtitle { font-size: 0.85rem; color: #aaa; margin-bottom: 20px; text-transform: uppercase; font-weight: 600; }
+        .store-owner { 
+            display: inline-block;
+            font-size: 0.82rem; 
+            color: var(--white); 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-top: 10px;
+            padding: 6px 18px;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            box-shadow: inset 0 1px 1px rgba(255,255,255,0.2), 0 4px 15px rgba(0,0,0,0.4);
+            backdrop-filter: blur(10px);
+        }
+
+        /* EQUIPMENT SHOWCASE - 3D GLASS BENTO GRID */
+        .equipment-showcase { margin: 32px 0; text-align: center; }
+        
+        .showcase-title { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 2.35rem; 
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--secondary), #ffffff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 4px; 
+        }
+        
+        .showcase-subtitle { 
+            font-size: 0.78rem; 
+            color: var(--text-light); 
+            margin-bottom: 22px; 
+            text-transform: uppercase; 
+            font-weight: 700; 
+            letter-spacing: 2.5px;
+        }
         
         .equipment-grid { 
             display: flex; 
             flex-wrap: wrap; 
             justify-content: center; 
-            gap: 12px; 
+            gap: 14px; 
         }
+
         .equip-item {
-            position: relative; border-radius: 12px; overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.05); height: 110px; /* Made slightly taller for better visuals */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.6); cursor: pointer; transform: translateZ(0);
-            /* Perfect 50% split for the 4 remaining items */
-            flex: 1 1 calc(50% - 12px); max-width: calc(50% - 6px);
+            position: relative; 
+            border-radius: 20px; 
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.35);
+            height: 130px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.65); 
+            cursor: pointer; 
+            transform: translateZ(0);
+            flex: 1 1 calc(50% - 14px); 
+            max-width: calc(50% - 7px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
+
         .equip-item img {
-            width: 100%; height: 100%; object-fit: cover; transition: 0.3s ease; filter: brightness(0.7);
+            width: 100%; height: 100%; object-fit: cover; 
+            transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.4s ease; 
+            filter: brightness(0.78) contrast(1.1);
         }
-        .equip-item:hover img { transform: scale(1.15); filter: brightness(1.1); }
-        .equip-item:hover { border-color: var(--primary); box-shadow: 0 0 20px rgba(255, 51, 0, 0.4); }
+
+        .equip-item:hover img { 
+            transform: scale(1.16) rotate(1.5deg); 
+            filter: brightness(1.05) contrast(1.15); 
+        }
+
+        .equip-item:hover { 
+            transform: translateY(-6px);
+            border-color: var(--primary); 
+            box-shadow: 
+                0 18px 35px rgba(0, 0, 0, 0.85), 
+                0 0 22px rgba(204, 255, 0, 0.4); 
+        }
         
         .equip-label {
-            position: absolute; bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.85); color: #fff; font-size: 0.8rem; font-weight: 700;
-            padding: 6px 0; text-transform: uppercase; transition: 0.3s;
+            position: absolute; 
+            bottom: 8px; left: 8px; right: 8px;
+            width: calc(100% - 16px);
+            background: rgba(8, 12, 20, 0.72);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            border-radius: 12px;
+            color: #fff; 
+            font-size: 0.78rem; 
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 7px 0; 
+            text-transform: uppercase; 
+            transition: all 0.35s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
         }
-        .equip-item:hover .equip-label { color: var(--secondary); background: rgba(0,0,0,0.95); }
 
-        /* ACTION BUTTONS */
-        .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 35px 0; }
+        .equip-item:hover .equip-label { 
+            color: #000; 
+            background: var(--primary); 
+            border-color: #fff;
+            box-shadow: 0 0 15px var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* TACTILE GLASSMORPHISM ACTION BUTTONS */
+        .action-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 14px; 
+            margin: 34px 0; 
+        }
+
         .action-btn {
-            padding: 16px; border-radius: 12px; text-align: center; color: var(--white);
-            text-decoration: none; transition: all 0.3s ease; cursor: pointer;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 1px solid rgba(255,255,255,0.1); background: rgba(0,0,0,0.6);
+            padding: 18px 14px; 
+            border-radius: 20px; 
+            text-align: center; 
+            color: var(--white);
+            text-decoration: none; 
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            cursor: pointer;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.28);
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.5),
+                inset 0 1px 1px rgba(255, 255, 255, 0.15);
+            position: relative;
+            overflow: hidden;
             will-change: transform;
         }
-        
-        .btn-call:hover { background: linear-gradient(135deg, #0052D4, #4364F7); border-color: transparent; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(0,123,255,0.4); }
-        .btn-wa:hover { background: linear-gradient(135deg, #11998e, #38ef7d); border-color: transparent; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(37,211,102,0.4); }
-        .btn-ig:hover { background: linear-gradient(135deg, #f58529, #dd2a7b, #8134af); border-color: transparent; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(221,42,123,0.4); }
-        .btn-map:hover { background: linear-gradient(135deg, #ff416c, #ff4b2b); border-color: transparent; transform: translateY(-4px); box-shadow: 0 8px 20px rgba(234,67,53,0.4); }
 
-        .action-btn i { font-size: 1.8rem; margin-bottom: 8px; color: var(--secondary); transition: 0.3s; }
-        .action-btn:hover i { color: #fff; text-shadow: 0 0 10px rgba(255,255,255,0.5); }
-        .action-btn span { font-weight: 700; font-size: 0.95rem; text-transform: uppercase; }
-
-        /* SINGLE TAP AUTO REVIEW */
-        .review-section { 
-            text-align: center; background: rgba(0,0,0,0.6); padding: 35px 25px; 
-            border-radius: 15px; margin: 35px 0; border: 1px solid rgba(255, 51, 0, 0.3); 
-            box-shadow: inset 0 0 30px rgba(0,0,0,0.8);
+        /* Subtle Specular Sheen on Buttons */
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 60%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.18), transparent);
+            transform: skewX(-25deg);
+            transition: 0.6s ease;
         }
-        .review-title { font-family: 'Bebas Neue', sans-serif; font-size: 2.3rem; margin-bottom: 5px; color: #fff; letter-spacing: 1px;}
+        .action-btn:hover::before { left: 140%; }
+        
+        .btn-call:hover { 
+            background: linear-gradient(135deg, rgba(0, 114, 255, 0.85), rgba(0, 198, 255, 0.85)); 
+            border-color: #70e1ff; 
+            transform: translateY(-6px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(0, 162, 255, 0.45), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
+        .btn-wa:hover { 
+            background: linear-gradient(135deg, rgba(17, 153, 142, 0.9), rgba(56, 239, 125, 0.85)); 
+            border-color: #8affba; 
+            transform: translateY(-6px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(56, 239, 125, 0.45), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
+        .btn-ig:hover { 
+            background: linear-gradient(135deg, rgba(245, 133, 41, 0.9), rgba(221, 42, 123, 0.9), rgba(129, 52, 175, 0.9)); 
+            border-color: #ff99cc; 
+            transform: translateY(-6px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(221, 42, 123, 0.5), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
+        .btn-map:hover { 
+            background: linear-gradient(135deg, rgba(255, 0, 85, 0.9), rgba(255, 94, 0, 0.85)); 
+            border-color: #ff99ab; 
+            transform: translateY(-6px) scale(1.02); 
+            box-shadow: 0 15px 30px rgba(255, 0, 85, 0.45), inset 0 0 15px rgba(255,255,255,0.4); 
+        }
+
+        .action-btn i { 
+            font-size: 1.9rem; 
+            margin-bottom: 10px; 
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.35s ease; 
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+        }
+
+        .action-btn:hover i { 
+            background: #ffffff;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 12px rgba(255,255,255,0.8)); 
+        }
+
+        .action-btn span { 
+            font-weight: 700; 
+            font-size: 0.92rem; 
+            letter-spacing: 1px;
+            text-transform: uppercase; 
+        }
+
+        /* HOLOGRAPHIC VIP REVIEW CARD */
+        .review-section { 
+            text-align: center; 
+            background: linear-gradient(160deg, rgba(204, 255, 0, 0.08) 0%, rgba(10, 15, 28, 0.75) 50%, rgba(0, 240, 255, 0.08) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 32px 24px; 
+            border-radius: 26px; 
+            margin: 35px 0; 
+            border: 1px solid rgba(204, 255, 0, 0.35); 
+            border-top: 1px solid rgba(255, 255, 255, 0.45);
+            box-shadow: 
+                0 20px 45px rgba(0, 0, 0, 0.75),
+                0 0 30px rgba(204, 255, 0, 0.1),
+                inset 0 1px 2px rgba(255, 255, 255, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .review-title { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 2.5rem; 
+            margin-bottom: 6px; 
+            color: #fff; 
+            letter-spacing: 2px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.6);
+        }
         
         .review-btn { 
-            background: linear-gradient(45deg, var(--secondary), var(--primary), var(--secondary));
-            background-size: 200% 200%; color: #fff; font-size: 1.1rem; font-weight: 700; 
-            font-family: 'Poppins', sans-serif; padding: 16px 20px; border: none; border-radius: 30px; 
-            cursor: pointer; text-transform: uppercase; transition: all 0.3s ease; width: 100%; margin-top: 18px;
-            box-shadow: 0 8px 25px rgba(255, 51, 0, 0.4); animation: moveGradient 3s ease infinite;
+            background: linear-gradient(90deg, var(--primary), #00ffa6, var(--secondary), var(--primary));
+            background-size: 300% 100%; 
+            color: #030508; 
+            font-size: 1.05rem; 
+            font-weight: 900; 
+            letter-spacing: 0.8px;
+            font-family: 'Poppins', sans-serif; 
+            padding: 17px 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.7); 
+            border-radius: 50px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            width: 100%; 
+            margin-top: 20px;
+            box-shadow: 
+                0 10px 30px rgba(204, 255, 0, 0.4),
+                inset 0 2px 3px rgba(255, 255, 255, 0.8); 
+            animation: moveGradient 4s linear infinite;
         }
-        .review-btn:hover { transform: scale(1.03); box-shadow: 0 10px 30px rgba(0, 212, 255, 0.6); animation: none; }
-        .review-note { font-size: 0.8rem; color: #aaa; margin-top: 15px; font-weight: 600;}
 
-        /* DEVELOPER FOOTER (FIXED LOGO) */
-        .footer { text-align: center; padding: 30px 0 15px; margin-top: 25px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .review-btn:hover { 
+            transform: translateY(-4px) scale(1.02); 
+            box-shadow: 
+                0 15px 40px rgba(0, 240, 255, 0.65),
+                0 0 25px rgba(204, 255, 0, 0.8); 
+            color: #000;
+        }
+
+        .review-note { 
+            font-size: 0.78rem; 
+            color: var(--text-light); 
+            margin-top: 16px; 
+            font-weight: 600;
+            letter-spacing: 0.4px;
+        }
+        .review-note i { color: var(--primary); margin-right: 4px; }
+
+        /* DEVELOPER FOOTER - SLEEK GLASS PILL */
+        .footer { 
+            text-align: center; 
+            padding: 28px 0 10px; 
+            margin-top: 25px; 
+            border-top: 1px solid rgba(255, 255, 255, 0.08); 
+        }
+
         .dev-badge { 
-            display: inline-flex; flex-direction: column; align-items: center;
-            background: rgba(0,0,0,0.5); padding: 15px 25px; border-radius: 15px; 
-            border: 1px solid rgba(255,255,255,0.05); text-decoration: none; transition: 0.3s; 
+            display: inline-flex; 
+            flex-direction: column; 
+            align-items: center;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.01));
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 18px 34px; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.25);
+            text-decoration: none; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
         }
-        .dev-badge:hover { border-color: var(--secondary); background: rgba(0, 212, 255, 0.05); transform: translateY(-4px); box-shadow: 0 10px 25px rgba(0,0,0,0.6); }
-        .dev-logo-img { 
-            width: 55px; height: 55px; border-radius: 50%; margin-bottom: 10px; 
-            border: 2px solid var(--secondary); object-fit: cover; transition: 0.4s ease; 
-        }
-        .dev-badge:hover .dev-logo-img { transform: rotate(15deg) scale(1.15); box-shadow: 0 0 15px var(--secondary); }
-        .dev-text { color: #aaa; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px;}
-        .dev-name { color: var(--white); font-weight: 700; font-size: 0.95rem; }
-        .copyright-text { font-size: 0.75rem; color: #555; margin-top: 20px; font-weight: 600; letter-spacing: 0.5px; }
 
-        /* MODAL */
+        .dev-badge:hover { 
+            border-color: var(--secondary); 
+            background: rgba(0, 240, 255, 0.08); 
+            transform: translateY(-6px); 
+            box-shadow: 0 18px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 240, 255, 0.3); 
+        }
+
+        .dev-logo-img { 
+            width: 58px; height: 58px; 
+            border-radius: 50%; 
+            margin-bottom: 10px; 
+            border: 2px solid var(--primary); 
+            object-fit: cover; 
+            transition: 0.45s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.35);
+        }
+
+        .dev-badge:hover .dev-logo-img { 
+            transform: rotate(12deg) scale(1.15); 
+            border-color: var(--secondary);
+            box-shadow: 0 0 25px var(--secondary); 
+        }
+
+        .dev-text { 
+            color: var(--text-light); 
+            font-size: 0.7rem; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .dev-name { 
+            background: linear-gradient(90deg, #fff, var(--primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900; 
+            font-size: 1rem; 
+            letter-spacing: 1px;
+        }
+
+        .copyright-text { 
+            font-size: 0.72rem; 
+            color: rgba(255, 255, 255, 0.4); 
+            margin-top: 22px; 
+            font-weight: 500; 
+            letter-spacing: 0.8px; 
+        }
+
+        /* FROSTED GLASS MODAL POPUP */
         .modal-overlay {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
+            background: rgba(3, 5, 10, 0.78); 
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
             display: flex; align-items: center; justify-content: center;
-            z-index: 100; opacity: 0; visibility: hidden; transition: 0.3s ease;
+            z-index: 100; opacity: 0; visibility: hidden; 
+            transition: all 0.35s ease;
         }
         .modal-overlay.active { opacity: 1; visibility: visible; }
+        
         .modal-content {
-            background: #07090f; border: 2px solid var(--secondary); padding: 30px; border-radius: 15px; width: 90%; max-width: 350px;
-            text-align: center; box-shadow: 0 15px 40px rgba(0,212,255,0.3); transform: scale(0.9); transition: 0.3s ease;
+            background: linear-gradient(145deg, rgba(18, 25, 42, 0.9), rgba(8, 11, 20, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid var(--primary);
+            padding: 34px 28px; 
+            border-radius: 28px; 
+            width: 90%; max-width: 360px;
+            text-align: center; 
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.95),
+                0 0 35px rgba(204, 255, 0, 0.2); 
+            transform: scale(0.88) translateY(20px); 
+            transition: all 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
-        .modal-overlay.active .modal-content { transform: scale(1); }
-        .modal-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--secondary); margin-bottom: 20px; }
+        .modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
+        
+        .modal-title { 
+            font-family: 'Bebas Neue', sans-serif; 
+            font-size: 2.2rem; 
+            letter-spacing: 1.5px;
+            color: var(--primary); 
+            margin-bottom: 22px; 
+        }
+        
         .modal-btn {
-            display: block; width: 100%; padding: 14px; margin-bottom: 12px; background: rgba(0, 212, 255, 0.1); color: #fff;
-            border: 1px solid var(--secondary); text-decoration: none; font-size: 1.05rem; font-weight: 700; border-radius: 8px; cursor: pointer; text-transform: uppercase;
+            display: block; width: 100%; padding: 15px; margin-bottom: 14px; 
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.15), rgba(0, 240, 255, 0.15)); 
+            color: #fff;
+            border: 1px solid var(--primary); 
+            text-decoration: none; 
+            font-size: 0.95rem; 
+            font-weight: 700; 
+            letter-spacing: 0.8px;
+            border-radius: 16px; 
+            cursor: pointer; 
+            text-transform: uppercase;
+            transition: all 0.3s ease;
         }
-        .modal-btn:hover { background: var(--secondary); color: #000; box-shadow: 0 0 20px var(--secondary); }
-        .close-modal { color: #888; cursor: pointer; font-size: 0.85rem; margin-top: 15px; display: inline-block; font-weight: 700; text-transform: uppercase;}
+        .modal-btn:hover { 
+            background: var(--primary); 
+            color: #000; 
+            box-shadow: 0 0 25px var(--primary); 
+            transform: translateY(-2px);
+        }
+        
+        .close-modal { 
+            color: var(--text-light); 
+            cursor: pointer; 
+            font-size: 0.8rem; 
+            margin-top: 16px; 
+            display: inline-block; 
+            font-weight: 700; 
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.05);
+            transition: 0.3s;
+        }
+        .close-modal:hover {
+            color: #fff;
+            background: rgba(255, 0, 85, 0.3);
+        }
 
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes moveGradient { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
-        .fade-in-scroll { opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-        .fade-in-scroll.visible { opacity: 1; transform: translateY(0); }
+        /* KEYFRAME ANIMATIONS */
+        @keyframes fadeInDown { 
+            from { opacity: 0; transform: translateY(-25px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+        @keyframes moveGradient { 
+            0% { background-position: 0% 50%; } 
+            100% { background-position: 300% 50%; } 
+        }
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-7px); }
+        }
+        @keyframes ambientPulse {
+            0% { opacity: 0.7; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.06); }
+        }
+
+        .fade-in-scroll { 
+            opacity: 0; 
+            transform: translateY(24px); 
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+        .fade-in-scroll.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
     </style>
 </head>
 <body>
@@ -413,7 +836,7 @@
                     }, 2000);
                 }, 1200);
 
-            }).catch(err => {
+            }).catch(err => { 
                 window.location.href = reviewUrl;
             });
         }
